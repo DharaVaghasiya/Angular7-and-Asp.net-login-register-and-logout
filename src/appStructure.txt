@@ -7,9 +7,17 @@
        +--Login
           |--login.component.ts/.html/.css
           |
-     +--shared
-          |--user.service.ts
-     --app.module.ts
-     --app.routing.module.ts(route configs.)
+   +--Home
+       |--user.component.ts/.html/.css
+
+   +--shared
+         |--user.service.ts
+   
+   +--auth
+         |--auth.guard.ts
+         |--auth.interceptor.ts
+         
+   --app.module.ts
+   --app.routing.module.ts(route configs.)
 --index.html(cdn path for bootstrap)
      

@@ -1,8 +1,9 @@
+import { AuthInterceptors } from './auth/auth.interceptor';
 import { UserService } from './shared/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import{ ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -11,6 +12,7 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { LoginComponent } from './user/login/login.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { LoginComponent } from './user/login/login.component';
     AppComponent,
     UserComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,11 @@ import { LoginComponent } from './user/login/login.component';
     }),
     FormsModule
   ],
-  providers:  [UserService],
+  providers:  [UserService, {
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptors,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
